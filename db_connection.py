@@ -1,9 +1,36 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://<username>:<password>@<cluster-address>/<database>?retryWrites=true&w=majority")
-db = client["database_name"]
+client = MongoClient('mongodb://localhost:27017/')  
+db = client['database_name']  
+collection = db['user_info']  
 
-collection = db["collection_name"]
+def insert_user_info(user_id, owner_info, vessel_info, emergency_contact_info):
+    user_data = {
+        'user_id': user_id,
+        'owner_info': owner_info,
+        'vessel_info': vessel_info,
+        'emergency_contact_info': emergency_contact_info
+    }
+    collection.insert_one(user_data)
+    print("User information inserted successfully.")
 
-document = {"var1": "", "var2": 0}
-collection.insert_one(document)
+# example usage
+user_id = 'user123'
+owner_info = {
+    'name': 'John Doe',
+    'email': 'john@example.com',
+    'phone': '123-456-7890'
+}
+vessel_info = {
+    'vessel_name': 'My Boat',
+    'registration_number': '123ABC'
+}
+emergency_contact_info = {
+    'name': 'Jane Doe',
+    'relationship': 'Spouse',
+    'phone': '987-654-3210'
+}
+
+insert_user_info(user_id, owner_info, vessel_info, emergency_contact_info)
+
+client.close()
