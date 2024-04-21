@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://localhost:27017/')  
-db = client['database_name']  
+client = MongoClient('')  
+db = client['SafeSignal']  
 collection = db['user_info']  
 
 def insert_user_info(user_id, owner_info, vessel_info, emergency_contact_info):
