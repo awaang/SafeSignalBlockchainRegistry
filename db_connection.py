@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 client = MongoClient('')  
-db = client['SafeSignal']  
+db = client['mongodb+srv://ayw:<password>@safesignal.l4orc1n.mongodb.net/']  
 collection = db['user_info']  
 
 def insert_user_info(user_id, owner_info, vessel_info, emergency_contact_info):
